@@ -54,6 +54,9 @@ const db = mongoose_1.default.connection;
 db.on("error", (error) => console.error(error)); // For errors after initial connection was established: https://mongoosejs.com/docs/connections.html#error-handling
 db.once("open", () => console.log('Connected to Database'));
 app.use(express_1.default.json());
-app.get('/', (req, res) => (res.send(req.query)));
-;
+// app.get('/', (req, res) => (
+//     res.send(req.query); 
+// ));
+const pokemonSpecies_1 = __importDefault(require("./routes/pokemonSpecies"));
+app.use('/pokemonSpecies', pokemonSpecies_1.default);
 app.listen(port, () => console.log(`Express is listening at http://localhost:${port}`));

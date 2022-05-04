@@ -21,13 +21,13 @@ db.once("open", () => console.log('Connected to Database'));
 
 app.use(express.json()); 
 
-app.get('/', (req, res) => (
-    res.send(req.query); 
+// app.get('/', (req, res) => (
+//     res.send(req.query); 
 
-));
+// ));
 
-const subscribersRouter = require('./routes/subscribers')
-app.use('/subscribers', subscribersRouter) // The first function is which paths this app.use catches and subscribersRouter is the "function" passed in as middleware
+import pokemonSpeciesRouter from './routes/pokemonSpecies';
+app.use('/pokemonSpecies', pokemonSpeciesRouter); 
 
 
 app.listen(port, () => console.log(`Express is listening at http://localhost:${port}`));
