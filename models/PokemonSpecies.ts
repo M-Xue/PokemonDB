@@ -16,7 +16,6 @@ const typeSchema = new mongoose.Schema({
         required: false,
         default: null,
         validate: [typeValidator, 'Invalid type!']
-
     }
 })
 
@@ -31,17 +30,15 @@ function eggGroupValidator(val: string) {
 }
 
 const pokemonSpeciesSchema = new mongoose.Schema({
-    _id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true,
+        unique: true
     },
     pokedexNumber: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     type: typeSchema,
     previousEvolution: {

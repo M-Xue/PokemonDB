@@ -4,4 +4,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const pokemonSchema = new mongoose_1.default.Schema({});
+function moveSetValidator(val) {
+    if (val.length < 1 || val.length > 4) {
+        return false;
+    }
+}
+const pokemonSchema = new mongoose_1.default.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    pokemonSpecies: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'pokemonSpecies' },
+    level: {
+        type: Number,
+        required: true
+    },
+    moveSet: {
+        type: [String],
+        required: true,
+        validate: [moveSetValidator, 'Incorrect number of moves!']
+    },
+    // trainer: Boolean,
+});
+exports.default = mongoose_1.default.model('pokemon', pokemonSchema, 'pokemon');

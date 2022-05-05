@@ -33,17 +33,15 @@ function eggGroupValidator(val) {
     return true;
 }
 const pokemonSpeciesSchema = new mongoose_1.default.Schema({
-    _id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true,
+        unique: true
     },
     pokedexNumber: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     type: typeSchema,
     previousEvolution: {
