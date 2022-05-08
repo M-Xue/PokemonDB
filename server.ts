@@ -32,6 +32,9 @@ app.use('/pokemonSpecies', pokemonSpeciesRouter);
 import pokemonRouter from './routes/pokemon';
 app.use('/pokemon', pokemonRouter)
 
+import trainerRouter from './routes/trainers';
+app.use('/trainers', trainerRouter)
+
 app.listen(port, () => console.log(`Express is listening at http://localhost:${port}`));
 
 

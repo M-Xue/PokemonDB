@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 function typeValidator(val: string) {
-    const validTypes = ['Normal', 'Fire', 'Water','Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark', 'Dragon', 'Steel', 'Fairy', null];
+    const validTypes = ['Normal', 'Fire', 'Water','Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark', 'Dragon', 'Steel', 'Fairy'];
     return validTypes.includes(val);
 }
 
@@ -14,7 +14,6 @@ const typeSchema = new mongoose.Schema({
     secondaryType: {
         type: String,
         required: false,
-        default: null,
         validate: [typeValidator, 'Invalid type!']
     }
 })

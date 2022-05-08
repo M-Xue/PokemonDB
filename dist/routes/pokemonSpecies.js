@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const PokemonSpecies_1 = __importDefault(require("../models/PokemonSpecies"));
+// Creating a new Pokemon species.
 router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const pokemonSpecies = new PokemonSpecies_1.default({
         name: req.body.name,
@@ -34,6 +35,7 @@ router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(400).json({ message: err.message });
     }
 }));
+// Getting the Pokemon species by Pokedex ID using route parameters.
 router.get('/pokedexID/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const pokedexID = req.params.id;
     try {
@@ -47,8 +49,12 @@ router.get('/pokedexID/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(400).json({ message: err.message });
     }
 }));
+// Getting the Pokemon species by name using a query string parameter in the route.
 router.get('/name', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const pokemonSpeciesName = req.query.name;
+    let pokemonSpeciesName = req.query.name;
+    if (typeof (pokemonSpeciesName) === "string") {
+        pokemonSpeciesName = pokemonSpeciesName.charAt(0) + pokemonSpeciesName.substring(1).toLowerCase();
+    }
     try {
         const pokemonSpecies = yield PokemonSpecies_1.default.findOne({ name: pokemonSpeciesName });
         if (pokemonSpecies == null) {
@@ -60,4 +66,19 @@ router.get('/name', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(400).json({ message: err.message });
     }
 }));
+// * Updating evolutions
+// router.patch('/name', async (req, res) => {
+//     let pokemonSpeciesName = req.body.name;
+//     if (typeof(pokemonSpeciesName) === "string") {
+//         pokemonSpeciesName = pokemonSpeciesName.charAt(0) + pokemonSpeciesName.substring(1).toLowerCase();
+//     }
+//     let previousEvolutionName = '';
+//     if (req.body.previousEvolutionName != null) {
+//         previousEvolutionName = req.body.previousEvolutionName;
+//     }
+//     let nextEvolutionName = '';
+//     if (req.body.nextEvolutionName != null) {
+//         nextEvolutionName = req.body.nextEvolutionName;
+//     }
+// })
 exports.default = router;

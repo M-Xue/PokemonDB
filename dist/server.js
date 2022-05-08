@@ -61,4 +61,6 @@ const pokemonSpecies_1 = __importDefault(require("./routes/pokemonSpecies"));
 app.use('/pokemonSpecies', pokemonSpecies_1.default);
 const pokemon_1 = __importDefault(require("./routes/pokemon"));
 app.use('/pokemon', pokemon_1.default);
+const trainers_1 = __importDefault(require("./routes/trainers"));
+app.use('/trainers', trainers_1.default);
 app.listen(port, () => console.log(`Express is listening at http://localhost:${port}`));

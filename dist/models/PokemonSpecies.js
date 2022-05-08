@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 function typeValidator(val) {
-    const validTypes = ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark', 'Dragon', 'Steel', 'Fairy', null];
+    const validTypes = ['Normal', 'Fire', 'Water', 'Grass', 'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dark', 'Dragon', 'Steel', 'Fairy'];
     return validTypes.includes(val);
 }
 const typeSchema = new mongoose_1.default.Schema({
@@ -17,7 +17,6 @@ const typeSchema = new mongoose_1.default.Schema({
     secondaryType: {
         type: String,
         required: false,
-        default: null,
         validate: [typeValidator, 'Invalid type!']
     }
 });

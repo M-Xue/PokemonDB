@@ -11,7 +11,11 @@ const pokemonSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    pokemonSpecies: { type: mongoose.Schema.Types.ObjectId, ref: 'pokemonSpecies' },
+    pokemonSpecies: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'pokemonSpecies',
+        required: true 
+    },
     level: {
         type: Number,
         required: true
@@ -21,7 +25,11 @@ const pokemonSchema = new mongoose.Schema({
         required: true,
         validate: [moveSetValidator, 'Incorrect number of moves!']
     },
-    // trainer: Boolean,
+    trainer: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'trainer',
+        required: true 
+    },
 })
 
 

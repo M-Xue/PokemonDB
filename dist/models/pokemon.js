@@ -14,7 +14,11 @@ const pokemonSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
-    pokemonSpecies: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'pokemonSpecies' },
+    pokemonSpecies: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: 'pokemonSpecies',
+        required: true
+    },
     level: {
         type: Number,
         required: true
@@ -24,6 +28,10 @@ const pokemonSchema = new mongoose_1.default.Schema({
         required: true,
         validate: [moveSetValidator, 'Incorrect number of moves!']
     },
-    // trainer: Boolean,
+    trainer: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: 'trainer',
+        required: true
+    },
 });
 exports.default = mongoose_1.default.model('pokemon', pokemonSchema, 'pokemon');
